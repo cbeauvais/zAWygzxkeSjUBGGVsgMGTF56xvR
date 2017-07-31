@@ -1,0 +1,10 @@
+{
+  "name": "global",
+  "dnc_file": "global_dnc.csv",
+  "create_data": {
+    "name": "global",
+    "description": "A global DNC list",
+    "dcn_type": "phone",
+    "account": "survox"
+  }
+}

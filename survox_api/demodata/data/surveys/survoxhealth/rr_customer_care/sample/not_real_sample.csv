@@ -1,0 +1,16 @@
+phone,string1,string2,number1,special_type
+3031111101,one,two,3,1
+3031111102,one,two,3,2
+3031111103,one,two,3,3
+3031111104,one,two,3,4
+3031111105,four,five,6,
+4151111101,four,five,6,5
+4151111102,four,five,6,6
+4151111103,four,five,6,7
+4151111104,seven,eight,9,8
+4151111105,seven,eight,9,9
+2121111101,seven,eight,9,
+2121111102,seven,eight,9,
+2121111103,seven,eight,9,
+2121111104,seven,eight,9,
+2121111105,ten,eleven,12,
