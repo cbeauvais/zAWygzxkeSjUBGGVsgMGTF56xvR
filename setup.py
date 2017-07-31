@@ -95,6 +95,7 @@ setup(
         '': ['*.json', '*.txt', '*.csv', '*.raw', '*.spx', '*.qpx', '*.sh'],
         'survox_api.demodata.data': ['*.json', '*.txt', '*.csv', '*.raw', '*.spx', '*.qpx', '*.sh'],
         'survox_api.demodata.data.surveys': ['*.json', '*.txt', '*.csv', '*.raw', '*.spx', '*.qpx', '*.sh'],
+        'survox_api.demodata.data.surveys.survoxhealth': ['*.json', '*.txt', '*.csv', '*.raw', '*.spx', '*.qpx', '*.sh'],
     },
 
     # Although 'package_data' is the preferred approach, in some case you may
