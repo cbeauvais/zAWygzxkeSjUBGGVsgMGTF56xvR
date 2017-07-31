@@ -1,0 +1,210 @@
+
+~prepare compile
+
+
+[ph_waittime,,Language=(Set=(EN) CHARACTER_SET=extended_ascii default_language=**)]
+{!numbering 0.05, 0.03 }
+
+''>random_seed=123
+{!smart_html_rdg}
+
+''{!htmlradiobuttons=100}
+''{!htmlcheckboxes=100}
+''{!htmlradiobuttons=15}
+''{!htmlcheckboxes=15}
+
+{Q1:
+Simple cat question with numeric response codes.<br>
+Legal answers are 1 or 2.
+!cat
+1 one
+2 two (terminates)
+}
+
+{!IF Q1(1)
+!goto Q2}
+
+''{!spc,b}
+''{!goto DONE}
+
+{!html_define mydefine I've got a define}
+
+{Q2:
+Simple cat question with alpha response codes. <br>
+Legal answers are Y, N or M.
+!cat
+Y Yes
+N No
+M Maybe
+}
+
+{!-html_define mydefine}
+
+{!-allowsuspend}
+
+''{DOBLOW:
+''Next Page should blow
+''!disp
+''}
+
+''{BLOWUP:
+''!cat,a
+''1 aa
+''2 bb
+''}
+
+{Q3:
+Simple fld question. <br>
+Legal answers are DIA or SFO.
+!fld
+DIA Denver
+SFO San Francisco
+}
+
+{COST:
+How much? \_ dollars
+!num,,,1-99
+}
+
+{Q4:
+Simple num question with a single numeric exception code. <br>
+Legal answers are 1-98, 99.
+!num,,,1-98,99:"numeric exception"
+}
+
+{!allowsuspend}
+
+{Q5A:
+Simple num question with alpha exception codes. <br>
+Legal answers are 1-99, DK,RF,&&&.<br>
+!num,,,1-99,,DK:"Don't Know"=0,RF:refused=99, "&&&":whatisit=12}
+
+{Q5:
+Simple num question with numeric and alpha exception codes. <br>
+Legal answers are 1-96, 99, DK,RF,&&&.<br>
+!num,,,1-96,99:"Magic Number",DK:"Don't Know"=0,RF:refused=99
+}
+
+'',"&&&":whatisit=12}
+
+{Q6:
+'' Simple expression.
+!expr,z,2*10
+}
+
+{!grid}
+
+{Q7:
+Simple var question. <br>
+From 1 to 70 characters. <br>
+!var,,70
+}
+
+{Q7a:
+   <hr>
+Simple var,h question. <br>
+!var,h,30
+}
+
+{!endgrid}
+
+{Q8:
+Simple text question. <br>
+From 1 to about 700 characters. <br>
+!tex
+}
+
+{Q9:
+Multiple response cat question, max of five answers, no exceptions. <br>
+Up to 5 answers.
+!cat,,5
+1 Brand A
+2 Brand B
+3 Brand C
+4 Brand D
+5 Brand E
+}
+
+{Q10:
+This is just a cat question with a somewhat long title and fairly long
+response list. <br><br>
+aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa <br>
+aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa <br>
+aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa <br>
+aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa <br>
+aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa <br> <br>
+Legal answers are 01-26 <br><br>
+!cat
+== A-M
+01 a
+02 b
+03 c
+04 d
+05 e
+06 f
+07 g
+08 h
+09 i
+10 j
+11 k
+12 l
+13 m
+== N-Z
+14 n
+15 o
+16 p
+17 q
+18 r
+19 s
+20 t
+21 u
+22 v
+23 w
+24 x
+25 y
+26 z
+}
+
+{Q11:
+This is just a cat question with a somewhat long title and fairly long
+response list. This question allows multiple answers. <br> <br>
+aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa <br>
+aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa <br>
+aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa <br>
+aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa <br>
+aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa aaaaa <br> <br>
+Legal answers are 01-26 and there may be up to 26 answers. <br><br>
+!cat,,26
+01 a
+02 b
+03 c
+04 d
+05 e
+06 f
+07 g
+08 h
+09 i
+10 j
+11 k
+12 l
+13 m
+14 n
+15 o
+16 p
+17 q
+18 r
+19 s
+20 t
+21 u
+22 v
+23 w
+24 x
+25 y
+26 z
+}
+
+{DONE: !goto}
+
+
+~end
+

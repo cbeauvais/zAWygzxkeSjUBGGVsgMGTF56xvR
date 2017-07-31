@@ -1,0 +1,18 @@
+{
+  "create_data": {
+    "surveycode": "ph_waittime",
+    "account": "survox",
+    "client": "survoxhealth",
+    "name": "Pharmacy Wait Times",
+    "contact": "Ben Nally",
+    "email": "bnally@pharmacy.com",
+    "third_party": "",
+    "modes": "",
+    "live": false,
+    "test": false,
+    "survox_complete_target": 200
+  },
+  "survey_sample": "sample/sample_info.json",
+  "quota_file": "quota.txt",
+  "survox_complete_total": 25
+}
