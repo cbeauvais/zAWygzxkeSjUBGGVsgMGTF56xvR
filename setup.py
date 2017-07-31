@@ -92,7 +92,8 @@ setup(
     # have to be included in MANIFEST.in as well.
     include_package_data=True,
     package_data={
-        '': ['*.json', '*.txt', '*.csv', '*.raw', '*.spx', '*.qpx', '*.sh']
+        '': ['*.json', '*.txt', '*.csv', '*.raw', '*.spx', '*.qpx', '*.sh'],
+        'survox_api.demodata.data': ['*.json', '*.txt', '*.csv', '*.raw', '*.spx', '*.qpx', '*.sh'],
     },
 
     # Although 'package_data' is the preferred approach, in some case you may

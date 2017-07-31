@@ -1,13 +1,5 @@
 # Include the license file
 include LICENSE.txt
 
-include *.json
-include *.txt
-include *.csv
-include *.raw
-include *.spx
-include *.qpx
-include *.sh
-
 # Include the data files
 recursive-include data *
