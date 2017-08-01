@@ -18,7 +18,7 @@ class SurvoxAPIBase:
         self.auth_headers = headers
         self.verbose = verbose
 
-    def api_get(self, endpoint, headers=None, full_response=False):
+    def api_get(self, endpoint, headers=None, full_response=False, **kwargs):
         """
         Make a GET request to the specified endpoint
         :param endpoint: api endpoint
@@ -27,12 +27,14 @@ class SurvoxAPIBase:
         :return: api response data, or full requests response structure
         """
         endpoint, headers = self._update_request_info('GET', endpoint, headers)
-        r = requests.get(url=endpoint, headers=headers)
+
+        query = {k:v for (k,v) in kwargs.items() if v is not None}
+        r = requests.get(url=endpoint, headers=headers, params=query)
         if full_response:
             return r
         return self._check_response(r, 'GET', endpoint)
 
-    def api_post(self, endpoint, data=None, json=None, headers=None, full_response=False):
+    def api_post(self, endpoint, data=None, json=None, headers=None, full_response=False, **kwargs):
         """
         Make a POST request to the specified endpoint
         :param endpoint: api endpoint
@@ -43,16 +45,17 @@ class SurvoxAPIBase:
         :return: api response data, or full requests response structure
         """
         endpoint, headers = self._update_request_info('POST', endpoint, headers)
+        query = {k:v for (k,v) in kwargs.items() if v is not None}
         if json:
             headers.update({"Content-Type": "application/json"})
-            r = requests.post(endpoint, data=json_dumps(json), headers=headers)
+            r = requests.post(endpoint, data=json_dumps(json), headers=headers, params=query)
         else:
-            r = requests.post(url=endpoint, data=data, headers=headers)
+            r = requests.post(url=endpoint, data=data, headers=headers, params=query)
         if full_response:
             return r
         return self._check_response(r, 'POST', endpoint)
 
-    def api_put(self, endpoint, data=None, json=None, headers=None, files=None, full_response=False):
+    def api_put(self, endpoint, data=None, json=None, headers=None, files=None, full_response=False, **kwargs):
         """
         Make a PUT request to the specified endpoint
         :param endpoint: api endpoint
@@ -64,17 +67,18 @@ class SurvoxAPIBase:
         :return: api response data, or full requests response structure
         """
         endpoint, headers = self._update_request_info('PUT', endpoint, headers)
+        query = {k:v for (k,v) in kwargs.items() if v is not None}
         if files:
-            return requests.put(url=endpoint, data=data, headers=headers, files=files)
+            return requests.put(url=endpoint, data=data, headers=headers, files=files, params=query)
         if json:
-            r = requests.put(url=endpoint, json=json_dumps(json), headers=headers)
+            r = requests.put(url=endpoint, json=json_dumps(json), headers=headers, params=query)
         else:
-            r = requests.put(url=endpoint, data=data, headers=headers)
+            r = requests.put(url=endpoint, data=data, headers=headers, params=query)
         if full_response:
             return r
         return self._check_response(r, 'PUT', endpoint)
 
-    def api_delete(self, endpoint, headers=None, full_response=False):
+    def api_delete(self, endpoint, headers=None, full_response=False, **kwargs):
         """
         Make a DELETE request to the specified endpoint
         :param endpoint: api endpoint
@@ -83,7 +87,8 @@ class SurvoxAPIBase:
         :return: api response data, or full requests response structure
         """
         endpoint, headers = self._update_request_info('DELETE', endpoint, headers)
-        r = requests.delete(url=endpoint, headers=headers)
+        query = {k:v for (k,v) in kwargs.items() if v is not None}
+        r = requests.delete(url=endpoint, headers=headers, params=query)
         if full_response:
             return r
         return self._check_response(r, 'DELETE', endpoint)

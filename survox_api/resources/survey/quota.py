@@ -14,6 +14,7 @@ class SurvoxAPISurveyQuotaList(SurvoxAPIBase):
         self.sid = sid
         self.endpoint = '/surveys/{sid}/quotas/'.format(sid=self.sid)
         self.reset_endpoint = '/surveys/{sid}/quotas-reset/'.format(sid=self.sid)
+        self.history_endpoint = '/surveys/{sid}/quotas-history/'.format(sid=self.sid)
 
     def list(self):
         """
@@ -49,6 +50,23 @@ class SurvoxAPISurveyQuotaList(SurvoxAPIBase):
         """
         return self.api_post(endpoint=self.reset_endpoint, data={})
 
+    def history(self, start=None, end=None, quotas=None):
+        """
+        Increment a specific survey quota by the specified amount
+        :param start: datetime
+        :param end: datetime
+        :param quotas: list of quotas
+        :return: quota history list
+        """
+        quotalist=None
+        if quotas:
+            if isinstance(quotas, list):
+                quotalist=','.join(quotas)
+            else:
+                raise SurvoxAPIRuntime('quotas must be a list []')
+
+        return self.api_get(endpoint=self.history_endpoint, start=start, end=end, quotas=quotalist)
+
 
 class SurvoxAPISurveyQuota(SurvoxAPIBase):
     """
@@ -63,6 +81,7 @@ class SurvoxAPISurveyQuota(SurvoxAPIBase):
         self.sid = sid
         self.endpoint = '/surveys/{sid}/quotas/{quota}/'.format(sid=self.sid, quota=self.name)
         self.increment_endpoint = '/surveys/{sid}/quotas/{quota}/increment/'.format(sid=self.sid, quota=self.name)
+        self.history_endpoint = '/surveys/{sid}/quotas/{quota}/history/'.format(sid=self.sid, quota=self.name)
 
     @staticmethod
     def _qfill(q=None, current=None, total=None, target=None):
@@ -124,3 +143,12 @@ class SurvoxAPISurveyQuota(SurvoxAPIBase):
             amount = 1
         increment = {'increment': int(amount)}
         return self.api_post(endpoint=self.increment_endpoint, data=increment)
+
+    def history(self, start=None, end=None):
+        """
+        Increment a specific survey quota by the specified amount
+        :param start: datetime
+        :param end: datetime
+        :return: quota history list
+        """
+        return self.api_get(endpoint=self.history_endpoint, start=start, end=end)
