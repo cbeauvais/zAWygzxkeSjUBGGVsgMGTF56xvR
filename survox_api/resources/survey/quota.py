@@ -58,10 +58,10 @@ class SurvoxAPISurveyQuotaList(SurvoxAPIBase):
         :param quotas: list of quotas
         :return: quota history list
         """
-        quotalist=None
+        quotalist = None
         if quotas:
             if isinstance(quotas, list):
-                quotalist=','.join(quotas)
+                quotalist = ','.join(quotas)
             else:
                 raise SurvoxAPIRuntime('quotas must be a list []')
 
