@@ -17,14 +17,17 @@ with open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 
-def package_files(directory):
+def package_files(directory_list):
     paths = []
-    for (path, directories, filenames) in os.walk(directory):
-        for filename in filenames:
-            paths.append(os.path.join('..', path, filename))
+    for directory in directory_list:
+        for (path, directories, filenames) in os.walk(directory):
+            for filename in filenames:
+                paths.append(os.path.join('..', path, filename))
     return paths
 
-extra_files = package_files('survox_api/demodata/data')
+data_dir = os.path.join('survox_api', 'demodata', 'data')
+conf_dir = os.path.join('survox_api', 'demodata', 'config')
+extra_files = package_files([data_dir, conf_dir])
 
 
 setup(
