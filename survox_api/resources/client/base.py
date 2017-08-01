@@ -1,5 +1,5 @@
 from survox_api.resources.base import SurvoxAPIBase
-from survox_api.resources.exception import SurvoxAPIException, SurvoxAPIRuntime, \
+from survox_api.resources.exception import SurvoxAPIRuntime, \
     SurvoxAPIMissingParameter, SurvoxAPINotFound
 from survox_api.resources.valid import valid_url_field
 from survox_api.resources.client.credentials import SurvoxAPIClientCredentialList, \

@@ -1,5 +1,5 @@
-from ...base import SurvoxAPIBase
-from .modes import SurvoxAPISurveyQuestionnaireModeCati, SurvoxAPISurveyQuestionnaireModeOnline, SurvoxAPISurveyQuestionnaireModeBase
+from .modes import SurvoxAPISurveyQuestionnaireModeCati, SurvoxAPISurveyQuestionnaireModeOnline, \
+    SurvoxAPISurveyQuestionnaireModeBase
 
 
 class SurvoxAPISurveyQuestionnaire(SurvoxAPISurveyQuestionnaireModeBase):
@@ -10,9 +10,9 @@ class SurvoxAPISurveyQuestionnaire(SurvoxAPISurveyQuestionnaireModeBase):
     @property
     def cati(self):
         return SurvoxAPISurveyQuestionnaireModeCati(sid=self.sid, base_url=self.base_url, headers=self.auth_headers,
-                                        verbose=self.verbose)
+                                                    verbose=self.verbose)
 
     @property
     def online(self):
         return SurvoxAPISurveyQuestionnaireModeOnline(sid=self.sid, base_url=self.base_url, headers=self.auth_headers,
-                                               verbose=self.verbose)
+                                                      verbose=self.verbose)

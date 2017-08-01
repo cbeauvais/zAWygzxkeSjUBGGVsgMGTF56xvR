@@ -1,8 +1,10 @@
 from ...base import SurvoxAPIBase
 from ...exception import SurvoxAPINotFound
 
+
 class SurvoxAPISurveyQuestionnaireModeBase(SurvoxAPIBase):
     mode = 'cati'
+
     def __init__(self, sid=None, base_url=None, headers=None, verbose=True):
         super(SurvoxAPISurveyQuestionnaireModeBase, self).__init__(base_url, headers, verbose)
         self.sid = sid

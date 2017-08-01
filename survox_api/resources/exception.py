@@ -7,6 +7,7 @@ class SurvoxAPIException(RuntimeError):
         self.method = method
         self.url = url
         self.response = response
+        self.kwargs = kwargs
 
     @property
     def status_code(self):
@@ -28,6 +29,7 @@ class SurvoxAPIRuntime(RuntimeError):
 
     def __init__(self, text, **kwargs):
         self.text = text
+        self.kwargs = kwargs
 
     def __str__(self):
         return 'Error[0] - {text}'.format(text=self.text)

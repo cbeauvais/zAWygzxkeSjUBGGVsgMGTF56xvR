@@ -28,7 +28,7 @@ class SurvoxAPIBase:
         """
         endpoint, headers = self._update_request_info('GET', endpoint, headers)
 
-        query = {k:v for (k,v) in kwargs.items() if v is not None}
+        query = {k: v for (k, v) in kwargs.items() if v is not None}
         r = requests.get(url=endpoint, headers=headers, params=query)
         if full_response:
             return r
@@ -45,7 +45,7 @@ class SurvoxAPIBase:
         :return: api response data, or full requests response structure
         """
         endpoint, headers = self._update_request_info('POST', endpoint, headers)
-        query = {k:v for (k,v) in kwargs.items() if v is not None}
+        query = {k: v for (k, v) in kwargs.items() if v is not None}
         if json:
             headers.update({"Content-Type": "application/json"})
             r = requests.post(endpoint, data=json_dumps(json), headers=headers, params=query)
@@ -67,7 +67,7 @@ class SurvoxAPIBase:
         :return: api response data, or full requests response structure
         """
         endpoint, headers = self._update_request_info('PUT', endpoint, headers)
-        query = {k:v for (k,v) in kwargs.items() if v is not None}
+        query = {k: v for (k, v) in kwargs.items() if v is not None}
         if files:
             return requests.put(url=endpoint, data=data, headers=headers, files=files, params=query)
         if json:
@@ -87,7 +87,7 @@ class SurvoxAPIBase:
         :return: api response data, or full requests response structure
         """
         endpoint, headers = self._update_request_info('DELETE', endpoint, headers)
-        query = {k:v for (k,v) in kwargs.items() if v is not None}
+        query = {k: v for (k, v) in kwargs.items() if v is not None}
         r = requests.delete(url=endpoint, headers=headers, params=query)
         if full_response:
             return r
@@ -118,7 +118,7 @@ class SurvoxAPIBase:
                 raise SurvoxAPIException(method, endpoint, r)
         try:
             payload = r.json()
-        except Exception as e:
+        except Exception:
             raise SurvoxAPIException(method, endpoint, r)
         if 'status' not in payload or payload['status'] != 'success':
             raise SurvoxAPIException(method, endpoint, r)

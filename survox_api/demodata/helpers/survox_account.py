@@ -39,7 +39,8 @@ class SurvoxAccount:
                                                                                  p=', '.join(missing)))
         return account_settings
 
-    def read_parmfile(self, controldir):
+    @staticmethod
+    def read_parmfile(controldir):
         parmfile = '{dir}/parmfile'.format(dir=controldir)
         with open(parmfile) as fh:
             content = fh.readlines()
