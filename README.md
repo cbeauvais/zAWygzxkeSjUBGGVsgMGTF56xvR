@@ -3,6 +3,9 @@
 This package has code for a python SDK for interacting with the Survox API.  The documentation for the API is
 currently available as [swagger](https://swagger-ui-dev.survoxinc.com/)
 
+Install it with `sudo pip install --upgrade git+https://github.com/cbeauvais/zAWygzxkeSjUBGGVsgMGTF56xvR.git`
+
+
 ## SKD Overview
 
 We don't have documentation for the SDK yet, but a good example of using the SDK is in demodata/demodata.py, which
