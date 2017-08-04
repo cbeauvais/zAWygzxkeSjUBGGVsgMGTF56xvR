@@ -3,7 +3,7 @@ from urllib.parse import urlparse
 
 from .resources.valid import valid_url_field
 from .resources.base import SurvoxAPIBase
-from .resources.account import SurvoxAPIAccountList, SurvoxAPIAccount
+from .resources.account.base import SurvoxAPIAccountList, SurvoxAPIAccount
 from .resources.client.base import SurvoxAPIClientList, SurvoxAPIClient
 from .resources.exception import SurvoxAPIRuntime
 from .resources.survey.base import SurvoxAPISurveyList, SurvoxAPISurvey

@@ -14,8 +14,8 @@ uses the SDK to install various example resources onto the local system.
 The general pattern of the SDK is illustrated by looking at the quotas endpoints in the API and how they translate
 into SDK calls.
 
-    # instantiate an api object
-    api = SurvoxAPI('my_host', 'my_apikey')
+    # instantiate an api object, use port and trailing '/' otherwise it'll use host/survoxapi/...
+    api = SurvoxAPI(''http://localhost:8000/'', 'my_apikey')
 
     # Example of a resource collection endpoint
     # /survoxapi/surveys/my_survey/quotas/ - get, post/create, delete all quotas for my_survey
