@@ -2,7 +2,7 @@
 ~prepare compile
 
 
-[rr_customer_care,,Language=(Set=(EN) CHARACTER_SET=extended_ascii default_language=**), qffname=rr_customer_care_wc]
+[rr_customer_care,,Language=(Set=(EN) CHARACTER_SET=extended_ascii default_language=**)]
 {!numbering 0.05, 0.03 }
 
 ''>random_seed=123

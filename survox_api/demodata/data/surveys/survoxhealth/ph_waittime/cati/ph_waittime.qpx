@@ -2,7 +2,7 @@
 ~prepare compile
 
 
-[ph_waittime,,Language=(Set=(EN) CHARACTER_SET=extended_ascii default_language=**), qffname=ph_waittime_wc]
+[ph_waittime,,Language=(Set=(EN) CHARACTER_SET=extended_ascii default_language=**)]
 {!numbering 0.05, 0.03 }
 
 ''>random_seed=123
