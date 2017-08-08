@@ -7,15 +7,6 @@ STUDYCODE=rr_customer_care
 
 
 #--------------------------------------------------------------------------------------
-# compile questionnaire
-if mentor $STUDYCODE.qpx -$STUDYCODE.lst > $STUDYCODE.scr 2>&1 ; then
-    echo "mentor compiled qpx!"
-else
-    grep 'ERROR:' -$STUDYCODE.lst
-fi
-
-
-#--------------------------------------------------------------------------------------
 # build sample file
 cd sample
 if fonebuld fb.spx -fb.lst > fb.scr 2>&1 ; then

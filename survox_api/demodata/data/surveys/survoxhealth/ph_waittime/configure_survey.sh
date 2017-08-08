@@ -7,16 +7,7 @@ STUDYCODE=ph_waittime
 
 
 #--------------------------------------------------------------------------------------
-# compile questionnaire
-if mentor $STUDYCODE.qpx -$STUDYCODE.lst > $STUDYCODE.scr 2>&1 ; then
-    echo "mentor compiled qpx!"
-else
-    grep 'ERROR:' -$STUDYCODE.lst
-fi
-
-
-#--------------------------------------------------------------------------------------
-# build sample file
+# build sample file from raw
 cd sample
 if fonebuld fb.spx -fb.lst > fb.scr 2>&1 ; then
     echo "fonebuld built sample!"

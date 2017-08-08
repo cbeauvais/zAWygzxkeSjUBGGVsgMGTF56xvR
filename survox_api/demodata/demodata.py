@@ -113,6 +113,14 @@ def api_install_surveys(api, survey_info, delete=True):
     c = api.surveys.create(survey_info['create_data'], exists_okay=True)
     print(c)
 
+    # upload questionnaires
+    for mode in ['cati', 'online']:
+        qpx = survey_datafile(survey_info['create_data']['client'], surveycode, mode, surveycode + '.qpx')
+        if os.path.isfile(qpx):
+            print("  Uploading questionnaire: {q}".format(q=qpx))
+            c = api.survey(surveycode).questionnaire.cati.upload(filename=qpx)
+            print(c)
+
     # install the sample, if not already there
     if delete:
         api.survey(surveycode).sample.delete()
@@ -164,7 +172,7 @@ def api_install_survey_quotas(api, client, surveycode, quota_aqu):
 def command_line_install_survey(cli, survey_info):
     print("  updating {s} from command line".format(s=survey_info['create_data']['surveycode']))
 
-    sourcebase = os.path.join(os.path.dirname(__file__), 'data', 'surveys')
+    sourcebase = os.path.join(base_directory, 'data', 'surveys')
     targetbase = os.path.join(cli.runtime, 'surveys')
 
     sourcedir = os.path.join(sourcebase, survey_info['create_data']['client'], survey_info['create_data']['surveycode'])
