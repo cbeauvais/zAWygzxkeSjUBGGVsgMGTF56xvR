@@ -14,6 +14,17 @@ from survox_api.survox_api import SurvoxAPI
 base_directory = os.path.dirname(__file__)
 
 
+def ops_manager_install(account, api_key):
+    return installer(account=account, api_key=api_key, install_these={
+        'clients': ['survoxhealth'],
+        'dncs': ['global'],
+        'sample_setup_rules': ['my_default_us'],
+        'sample_calling_rules': ['my_basic'],
+        'surveys': ['ph_waittime', 'rr_customer_care'],
+        'delete_sample': True
+    })
+
+
 def installer(account, api_key, install_these):
     api = SurvoxAPI('localhost', api_key)
     cli = SurvoxAccount(account)
@@ -95,7 +106,6 @@ def api_install_dncfiles(api, dnc_list):
 
 
 def api_install_surveys(api, survey_info, delete=True):
-
     surveycode = survey_info['create_data']['surveycode']
 
     print("Installing survey: {s}".format(s=surveycode))
@@ -181,12 +191,4 @@ def run_command_line_script(cli, survey_dir, script):
 
 
 if __name__ == '__main__':
-    installer('survox', 'an_api_key', {
-        'clients': ['survoxhealth'],
-        'dncs': ['global'],
-        'sample_setup_rules': ['my_default_us'],
-        'sample_calling_rules': ['my_basic'],
-        'surveys': ['ph_waittime', 'rr_customer_care'],
-        'delete_sample': True
-    })
-
+    ops_manager_install('survox', 'an_api_key')
