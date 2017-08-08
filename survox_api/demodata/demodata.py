@@ -115,7 +115,7 @@ def api_install_surveys(api, survey_info, delete=True):
 
     # upload questionnaires
     for mode in ['cati', 'online']:
-        qpx = survey_datafile(survey_info['create_data']['client'], surveycode, mode, surveycode + '.qpx')
+        qpx = survey_datafile(survey_info['create_data']['client'], surveycode, "{m}/{s}.qpx".format(m=mode, s=surveycode))
         if os.path.isfile(qpx):
             print("  Uploading questionnaire: {q}".format(q=qpx))
             c = api.survey(surveycode).questionnaire.cati.upload(filename=qpx)
