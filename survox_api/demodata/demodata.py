@@ -2,6 +2,7 @@
 
 import json
 import os
+import errno
 import stat
 import shutil
 import subprocess
@@ -172,6 +173,11 @@ def command_line_install_survey(cli, survey_info):
     print("       copying files from {s} to {t}".format(s=sourcedir, t=targetdir))
     for here, dirs, files in os.walk(sourcedir):
         there = here.replace(sourcedir, targetdir)
+        try:
+            os.makedirs(there)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
         for f in files:
             src = os.path.join(here, f)
             tgt = os.path.join(there, f)
