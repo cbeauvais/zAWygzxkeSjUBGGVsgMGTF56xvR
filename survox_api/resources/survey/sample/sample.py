@@ -15,6 +15,9 @@ class SurvoxAPISurveySample(SurvoxAPIBase):
         self.upload_endpoint = '{base}upload/'.format(base=self.endpoint)
         self.import_endpoint = '{base}import/'.format(base=self.endpoint)
         self.fields_endpoint = '{base}fields/'.format(base=self.endpoint)
+        self.rebuild_endpoint = '{base}rebuild/'.format(base=self.endpoint)
+        self.repair_endpoint = '{base}repair/'.format(base=self.endpoint)
+        self.recover_endpoint = '{base}recover/'.format(base=self.endpoint)
 
     def get(self):
         return self.api_get(endpoint=self.endpoint)
@@ -28,6 +31,15 @@ class SurvoxAPISurveySample(SurvoxAPIBase):
     def fields(self, system=False):
         endpoint = '{base}?system={system}'.format(base=self.fields_endpoint, system=system)
         return self.api_get(endpoint=endpoint)
+
+    def rebuild(self):
+        return self.api_post(endpoint=self.rebuild_endpoint, data={})
+
+    def repair(self):
+        return self.api_post(endpoint=self.repair_endpoint, data={})
+
+    def recover(self):
+        return self.api_post(endpoint=self.recover_endpoint, data={})
 
     @property
     def map(self):
