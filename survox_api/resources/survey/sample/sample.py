@@ -28,6 +28,9 @@ class SurvoxAPISurveySample(SurvoxAPIBase):
     def upload(self, filename, block_size=100000):
         return self.api_upload(endpoint=self.upload_endpoint, filename=filename, block_size=block_size)
 
+    def import_csv(self, filename):
+        return self.api_post(endpoint=self.import_endpoint, data={'samplefile': ntpath.basename(filename)})
+
     def fields(self, system=False):
         endpoint = '{base}?system={system}'.format(base=self.fields_endpoint, system=system)
         return self.api_get(endpoint=endpoint)
@@ -56,8 +59,10 @@ class SurvoxAPISurveySample(SurvoxAPIBase):
         return SurvoxAPISurveySampleCallingRules(sid=self.sid, base_url=self.base_url, headers=self.auth_headers,
                                                  verbose=self.verbose)
 
-    def import_csv(self, filename):
-        return self.api_post(endpoint=self.import_endpoint, data={'samplefile': ntpath.basename(filename)})
+    @property
+    def selection(self):
+        return SurvoxAPISurveySampleSelection(sid=self.sid, base_url=self.base_url, headers=self.auth_headers,
+                                              verbose=self.verbose)
 
     def add(self, filename, sample_map, setup_rules, calling_rules, exists_okay=False, block_size=100000):
         if self.verbose:
@@ -82,8 +87,3 @@ class SurvoxAPISurveySample(SurvoxAPIBase):
             'sample_calling_rules_result': calling_results,
             'sample_import_result': import_results,
         }
-
-    @property
-    def selection(self):
-        return SurvoxAPISurveySampleSelection(sid=self.sid, base_url=self.base_url, headers=self.auth_headers,
-                                              verbose=self.verbose)
