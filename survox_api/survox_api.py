@@ -8,6 +8,7 @@ from .resources.client.base import SurvoxAPIClientList, SurvoxAPIClient
 from .resources.exception import SurvoxAPIRuntime
 from .resources.survey.base import SurvoxAPISurveyList, SurvoxAPISurvey
 from .resources.library.base import SurvoxAPILibrary
+from .resources.admin.base import SurvoxAPIAdmin
 from .resources.exception import SurvoxAPIException
 
 
@@ -150,3 +151,7 @@ class SurvoxAPI:
     @property
     def library(self):
         return SurvoxAPILibrary(base_url=self.base_url, headers=self.headers, verbose=self.verbose)
+
+    @property
+    def admin(self):
+        return SurvoxAPIAdmin(base_url=self.base_url, headers=self.headers, verbose=self.verbose)

@@ -56,6 +56,7 @@ class SurvoxAPISurvey(SurvoxAPIBase):
         self.sid = sid
         self.list_url = '/surveys/'
         self.survey_url = '/surveys/{sid}/'.format(sid=self.sid)
+        self.deploy_endpoint = '{base}deploy/'.format(base=self.survey_url)
 
     def get(self):
         """
@@ -80,6 +81,10 @@ class SurvoxAPISurvey(SurvoxAPIBase):
             if x['surveycode'] == self.sid:
                 return x
         return {}
+
+    def deploy(self):
+        self._get_required()
+        return self.api_post(endpoint=self.deploy_endpoint)
 
     @property
     def sample(self):
