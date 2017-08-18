@@ -29,6 +29,7 @@ def ops_manager_install(account, api_key):
 def installer(account, api_key, install_these):
     api = SurvoxAPI('localhost', api_key)
     cli = SurvoxAccount(account)
+    pre_install_tasks(api, account)
 
     if 'clients' in install_these and install_these['clients']:
         api_install_clients(api, install_these['clients'])
@@ -43,7 +44,16 @@ def installer(account, api_key, install_these):
             survey_conf = read_config('survey', surveycode)
             api_install_surveys(api, survey_conf, install_these.get('delete_sample', True))
             command_line_install_survey(cli, survey_conf)
+    post_install_tasks(api, account)
     print("All Done!")
+
+
+def pre_install_tasks(api, account):
+    api.account(account).server.start()
+
+
+def post_install_tasks(api, account):
+    api.account(account).server.start()
 
 
 def read_config(location, file):
