@@ -17,12 +17,6 @@ fi
 cd ..
 
 
-#--------------------------------------------------------------------------------------
-# copy to active directories
-cp *.qff $cfmcqfl
-cp sample/*.f* $cfmcfone
-cp *.quo $cfmcquota
-
 # start the server
 $cfmcgo/server_start.sh $cfmcpath
 

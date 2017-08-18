@@ -142,6 +142,7 @@ def api_install_surveys(api, survey_info, delete=True):
             'total': survey_info['survox_complete_total']
         }])
     api.survey(surveycode).quota('survox_complete').set(total=survey_info['survox_complete_total'])
+    api.survey(surveycode).deploy()
     print(" --- survey {s} installed".format(s=surveycode))
 
 
